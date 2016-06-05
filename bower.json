@@ -1,0 +1,7 @@
+{
+  "name": "tooltipster-scrollableTip",
+  "main": ["tooltipster-scrollableTip.min.js"],
+  "dependencies": {
+    "tooltipster": ">=4.0.0"
+  }
+}

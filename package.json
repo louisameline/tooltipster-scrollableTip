@@ -1,0 +1,28 @@
+{
+	"author": {
+		"name" : "Louis Ameline",
+		"email" : "evangun2001@yahoo.fr",
+		"url" : "https://github.com/louisameline"
+	},
+	"bugs": {
+		"url": "https://github.com/louisameline/tooltipster-scrollableTip/issues"
+	},
+	"description": "A Tooltipster plugin to make tooltips scrollable rather than have them overflow the viewport.",
+	"homepage": "https://github.com/louisameline/tooltipster-scrollableTip/",
+	"keywords": [
+		"ecosystem:tooltipster",
+		"tooltipster-plugin",
+		"tooltipster"
+	],
+	"license": "MIT",
+	"main": "tooltipster-scrollableTip.min.js",
+	"name": "tooltipster-scrollabletip",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/louisameline/tooltipster-scrollableTip.git"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"version": "1.0.0"
+}

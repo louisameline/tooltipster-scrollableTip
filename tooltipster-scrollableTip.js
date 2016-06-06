@@ -25,16 +25,6 @@
 	$.tooltipster.plugin({
 		name: 'laa.scrollableTip',
 		instance: {
-			_defaults: function() {
-				
-				return {
-					// in all cases, the tooltip will be limited to the size
-					// of the viewport. But if this option is set to true, we
-					// will limit its size even further to make the tooltip fit
-					// on screen.
-					viewportFit: false
-				};
-			},
 			_init: function(instance) {
 				
 				var self = this;
@@ -44,7 +34,6 @@
 				self.instance = instance;
 				self.maxSize;
 				self.namespace = 'tooltipster-scrollableTip-'+ Math.round(Math.random()*100000);
-				self.options;
 				
 				// initial formatting
 				self._optionsFormat();
@@ -191,15 +180,6 @@
 						}
 					}
 				});
-			},
-			_optionsFormat: function() {
-				
-				var defaults = this._defaults(),
-				// if the plugin options were isolated in a property named after the
-				// plugin, use them (prevents conflicts with other plugins)
-					pluginOptions = this.instance.options[this.name] || this.instance.options;
-				
-				this.options = $.extend(true, {}, defaults, pluginOptions);
 			}
 		}
 	});

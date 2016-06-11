@@ -1,5 +1,6 @@
 # tooltipster-scrollableTip
-A Tooltipster plugin to make tooltips scrollable when they get too big.
+
+A [Tooltipster](http://iamceege.github.io/tooltipster/) plugin to make tooltips scrollable when they get too big. MIT license.
 
 When the tooltip is about to overflow the viewport, this plugin does the following: put the tooltip on the side which maximizes its size, resize it so it doesn't overflow the viewport, and make it scrollable for the content to be accessible.
 

@@ -33,25 +33,25 @@
 				
 				self.instance = instance;
 				self.maxSize;
-				self.namespace = 'tooltipster-scrollableTip-'+ Math.round(Math.random()*100000);
+				self.namespace = self.instance.namespace + '-scrollableTip';
 				
 				// initial formatting
 				self._optionsFormat();
 				
 				// reformat every time the options are changed
-				self.instance._on('options', function() {
+				self.instance._on('options.'+ self.namespace, function() {
 					self._optionsFormat();
 				});
 				
 				// prevent the tests on the document to save time
-				self.instance._on('positionTest', function(event) {
+				self.instance._on('positionTest.'+ self.namespace, function(event) {
 					if (event.container == 'document') {
 						event.takeTest(false);
 					}
 				});
 				
 				// select the scenario that will give a maximum area to the tooltip
-				self.instance._on('positionTested', function(event) {
+				self.instance._on('positionTested.'+ self.namespace, function(event) {
 					
 					var whole = false;
 					
@@ -120,7 +120,7 @@
 				});
 				
 				// restrain the size
-				self.instance._on('position', function(event) {
+				self.instance._on('position.'+ self.namespace, function(event) {
 					
 					var pos = event.position;
 					
@@ -180,7 +180,16 @@
 						}
 					}
 				});
+			},
+			
+			/**
+			 * Method used in case we need to unplug the scrollableTip plugin
+			 */
+			_destroy: function() {
+				this.instance._off('.'+ this.namespace);
 			}
 		}
 	});
+	
+	return $;
 }));

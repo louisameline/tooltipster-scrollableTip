@@ -35,14 +35,6 @@
 				self.maxSize;
 				self.namespace = self.instance.namespace + '-scrollableTip';
 				
-				// initial formatting
-				self._optionsFormat();
-				
-				// reformat every time the options are changed
-				self.instance._on('options.'+ self.namespace, function() {
-					self._optionsFormat();
-				});
-				
 				// prevent the tests on the document to save time
 				self.instance._on('positionTest.'+ self.namespace, function(event) {
 					if (event.container == 'document') {

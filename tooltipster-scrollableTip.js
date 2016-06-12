@@ -22,28 +22,28 @@
 	}
 }(this, function($) {
 	
-	$.tooltipster.plugin({
+	$.tooltipster._plugin({
 		name: 'laa.scrollableTip',
 		instance: {
-			_init: function(instance) {
+			__init: function(instance) {
 				
 				var self = this;
 				
 				// list of instance variables
 				
-				self.instance = instance;
-				self.maxSize;
-				self.namespace = self.instance.namespace + '-scrollableTip';
+				self.__instance = instance;
+				self.__maxSize;
+				self.__namespace = 'tooltipster-scrollableTip-'+ Math.round(Math.random()*1000000);
 				
 				// prevent the tests on the document to save time
-				self.instance._on('positionTest.'+ self.namespace, function(event) {
+				self.__instance._on('positionTest.'+ self.__namespace, function(event) {
 					if (event.container == 'document') {
 						event.takeTest(false);
 					}
 				});
 				
 				// select the scenario that will give a maximum area to the tooltip
-				self.instance._on('positionTested.'+ self.namespace, function(event) {
+				self.__instance._on('positionTested.'+ self.__namespace, function(event) {
 					
 					var whole = false;
 					
@@ -104,59 +104,59 @@
 						event.edit([event.results[index]]);
 						
 						// save for the position event listener
-						self.maxSize = maxSizes[index];
+						self.__maxSize = maxSizes[index];
 					}
 					else {
-						self.maxSize = null;
+						self.__maxSize = null;
 					}
 				});
 				
 				// restrain the size
-				self.instance._on('position.'+ self.namespace, function(event) {
+				self.__instance._on('position.'+ self.__namespace, function(event) {
 					
 					var pos = event.position;
 					
 					// in case there already was a listener.
 					// Note: we don't need to unbind at closing time, sideTip already
 					// clears the tooltip
-					$(event.tooltip).off('.'+ self.namespace);
+					$(event.tooltip).off('.'+ self.__namespace);
 					
-					if (self.maxSize) {
+					if (self.__maxSize) {
 						
-						if (	pos.size.height > self.maxSize.height
+						if (	pos.size.height > self.__maxSize.height
 							&&	pos.side !== 'bottom'
 						) {
 							pos.coord.top = 0;
 						}
-						if (	pos.size.width > self.maxSize.width
+						if (	pos.size.width > self.__maxSize.width
 							&&	pos.side !== 'right'
 						) {
 							pos.coord.left = 0;
 						}
 						
-						pos.size.height = Math.min(pos.size.height, self.maxSize.height);
-						pos.size.width = Math.min(pos.size.width, self.maxSize.width);
+						pos.size.height = Math.min(pos.size.height, self.__maxSize.height);
+						pos.size.width = Math.min(pos.size.width, self.__maxSize.width);
 						
 						event.edit(pos);
 						
-						if (!self.instance.options.interactive) {
+						if (!self.__instance.option('interactive')) {
 							
 							// we have to make the tooltip interactive ourselves. Touch events will
 							// emulate mouse events, we don't really care for the difference at this
 							// point (unless somebody comes up with a good use case)
 							$(event.tooltip)
 								.css('pointer-events', 'auto')
-								.on('mouseenter.'+ self.namespace, function(event) {
-									self.instance._trigger({
+								.on('mouseenter.'+ self.__namespace, function(event) {
+									self.__instance._trigger({
 										dismissable: false,
 										type: 'dismissable'
 									});
 								})
-								.on('mouseleave.'+ self.namespace, function(event) {
-									self.instance._trigger({
+								.on('mouseleave.'+ self.__namespace, function(event) {
+									self.__instance._trigger({
 										// we don't bother to differentiate mouse and touch, so we'll just
 										// use the touch delay which is longer by default
-										delay: self.instance.options.delayTouch[1],
+										delay: self.__instance.option('delayTouch')[1],
 										dismissable: true,
 										event: event,
 										type: 'dismissable'
@@ -167,7 +167,7 @@
 					else {
 						
 						// in case we had previously made it interactive
-						if (!self.instance.options.interactive) {
+						if (!self.__instance.option('interactive')) {
 							$(event.tooltip).css('pointer-events', '');
 						}
 					}
@@ -177,8 +177,8 @@
 			/**
 			 * Method used in case we need to unplug the scrollableTip plugin
 			 */
-			_destroy: function() {
-				this.instance._off('.'+ this.namespace);
+			__destroy: function() {
+				this.__instance._off('.'+ this.__namespace);
 			}
 		}
 	});

@@ -30,7 +30,7 @@ Declare the `scrollableTip` plugin in the options of the tooltips you want to be
 
 ```javascript
 $('.tooltip').tooltipster({
-    plugins: ['tooltipster.sideTip', 'laa.scrollableTip']
+    plugins: ['sideTip', 'scrollableTip']
 });
 ```
 

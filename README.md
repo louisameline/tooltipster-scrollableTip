@@ -6,6 +6,11 @@ When the tooltip is about to overflow the viewport, this plugin does the followi
 
 The tooltip will go off screen only if the origin itself goes off screen.
 
+Compatibility
+-------------
+
+This plugin works well in Chrome (PC, Android), Firefox and IE10+. As Safari (Mac, iPhone, iPad) and IE9 and lower have an incomplete/buggy support of the `display: flex` CSS property, this plugin will not behave as expected. See [issue #1](https://github.com/louisameline/tooltipster-scrollableTip/issues/1)
+
 Installation
 ------------
 
